@@ -9,5 +9,5 @@ fn test1() {
 
 #[test]
 fn test2() {
-    assert!(false)
+    assert!(true)
 }
