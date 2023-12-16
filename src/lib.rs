@@ -8,3 +8,7 @@ fn test1() {
 fn test2() {
     assert!(true)
 }
+#[test]
+fn test3() {
+    assert!(true)
+}
