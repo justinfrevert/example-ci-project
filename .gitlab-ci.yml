@@ -1,0 +1,11 @@
+stages:
+  - test
+
+variables:
+  CARGO_TERM_COLOR: "always"
+  RUST_BACKTRACE: "1"
+
+test:
+  stage: test
+  script:
+    - cargo test
