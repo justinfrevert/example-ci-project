@@ -7,5 +7,6 @@ variables:
 
 test:
   stage: test
+  image: rust:latest  # Use the latest official Rust image
   script:
     - cargo test
