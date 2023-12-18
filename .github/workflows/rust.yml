@@ -16,7 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build
-      run: cargo build --verbose
+    - name: Cargo Risc Zero installation
+      run: |
+        git clone https://github.com/justinfrevert/risc0.git
+        cd risc0
+        cargo install --path ./risc0/risc0/cargo-risczero --features experimental
+
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo risczero test
