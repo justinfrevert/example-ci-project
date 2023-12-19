@@ -4,7 +4,7 @@ stages:
 variables:
   CARGO_TERM_COLOR: "always"
   RUST_BACKTRACE: "1"
-  GITLAB_URL: "https://gitlab.com/justinFrevert/test-hello"
+  CUSTOM_ENV_GITLAB_URL: "https://gitlab.com/justinFrevert/test-hello"
 
 test:
   stage: test
