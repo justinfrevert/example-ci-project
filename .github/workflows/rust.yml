@@ -18,7 +18,12 @@ jobs:
     - name: Cargo Risc Zero installation
       run: |
         git clone https://github.com/justinfrevert/risc0.git
-        cargo install --path ./risc0/risc0/cargo-risczero --features experimental
+        cd risc0
+        cargo run --bin cargo-risczero -- risczero install
+        cargo install --path ./risc0/cargo-risczero --features experimental
+
+        cd ../
+        # cargo install --path ./risc0/risc0/cargo-risczero --features experimental
 
     - name: Run tests
       run: cargo risczero test
