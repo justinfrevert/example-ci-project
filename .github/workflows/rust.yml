@@ -22,8 +22,15 @@ jobs:
         cargo run --bin cargo-risczero -- risczero install
         cargo install --path ./risc0/cargo-risczero --features experimental
 
-        cd ../
-        # cargo install --path ./risc0/risc0/cargo-risczero --features experimental
-
     - name: Run tests
       run: cargo risczero test
+
+    - name: Move Proofs
+      run: |
+        mkdir -p ./proofs
+        find ./target/riscv32im-risc0-zkvm-elf/debug/deps -name '*_proof.json' -exec mv {} ./node_client/proofs \;
+
+    - name: Send to blockchain node
+      run: |
+        cd node_client
+        cargo run
