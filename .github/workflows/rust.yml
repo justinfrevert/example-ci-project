@@ -17,10 +17,14 @@ jobs:
     - uses: actions/checkout@v3
     - name: Cargo Risc Zero installation
       run: |
-        cargo install --git https://github.com/justinfrevert/risc0.git --bin cargo-risczero --branch main --features experimental
+        git clone https://github.com/justinfrevert/risc0.git
+        cd risc0
+        cargo install --path ./risc0/cargo-risczero --features experimental
 
-    # - name: Run tests
-    #   run: ./bin/cargo-risczero risczero test
+      # cargo run --bin cargo-risczero -- risczero install
+
+    - name: Run tests
+      run: ./bin/cargo-risczero risczero test
 
     - name: Move Proofs
       run: |
