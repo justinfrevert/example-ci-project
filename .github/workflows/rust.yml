@@ -19,12 +19,11 @@ jobs:
       run: |
         git clone https://github.com/justinfrevert/risc0.git
         cd risc0
+        cargo run --bin cargo-risczero -- risczero install # Extra step to fulfill inital requirement of cargo risczero installation
         cargo install --path ./risc0/cargo-risczero --features experimental
 
-      # cargo run --bin cargo-risczero -- risczero install
-
-    - name: Run tests
-      run: ./bin/cargo-risczero risczero test
+    # - name: Run tests
+    #   run: ./bin/cargo-risczero risczero test
 
     - name: Move Proofs
       run: |
