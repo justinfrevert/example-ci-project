@@ -33,4 +33,4 @@ jobs:
     - name: Send to blockchain node
       run: |
         cd node_client
-        cargo run
+        cargo run -- --url "ws://bore.pub:10030"
