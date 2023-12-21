@@ -22,8 +22,8 @@ jobs:
         cargo run --bin cargo-risczero -- risczero install # Extra step to fulfill inital requirement of cargo risczero installation
         cargo install --path ./risc0/cargo-risczero --features experimental
 
-    # - name: Run tests
-    #   run: ./bin/cargo-risczero risczero test
+    - name: Run tests
+      run: cargo risczero test
 
     - name: Move Proofs
       run: |
