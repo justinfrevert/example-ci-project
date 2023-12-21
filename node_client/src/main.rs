@@ -31,8 +31,9 @@ struct Args {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = Args::parse();
 
+    println!("Connecting to node at {:?}", args.url);
     // Specify the directory containing the JSON files
-    let directory_path = "./";
+    let directory_path = "./proofs";
     let api = OnlineClient::<PolkadotConfig>::from_url(args.url).await.unwrap();
 
     // The well-known Alice account - not for production use
@@ -40,6 +41,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Iterate over all files in the directory
     for entry in fs::read_dir(directory_path)? {
+        println!("Checking {:?}", entry);
         if let Ok(entry) = entry {
             let path = entry.path();
             
@@ -78,10 +80,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                     println!("Proof uploaded");
 
+                    let proof_verification_event = events.find_first::<substrate_node::test_proofs::events::ProofVerified>()?;
+                    if let Some(event) = proof_verification_event {
+                        println!("Onchain proof verification success: {event:?}");
+                    }
                 }
             }
         }
     }
-
+    println!("Done");
     Ok(())
 }
