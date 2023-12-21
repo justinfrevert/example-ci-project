@@ -15,20 +15,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    # - name: Cargo Risc Zero installation
-    #   run: |
-    #     git clone https://github.com/justinfrevert/risc0.git
-    #     cd risc0
-    #     cargo run --bin cargo-risczero -- risczero install
-    #     cargo install --path ./risc0/cargo-risczero --features experimental
-
-    - name: Install Cargo Risc Zero tool
-      uses: taiki-e/cache-cargo-install-action@v1
-      with:
-        tool: cargo-risczero
-        git: https://github.com/justinfrevert/risc0.git
-        rev: 6c2040cfcc179ddc961e5cf2bc793b7b2518e203
-        # Add other options like `tag`, `rev`, etc. if needed
+    - name: Cargo Risc Zero installation
+      run: |
+        git clone https://github.com/justinfrevert/risc0.git
+        cd risc0
+        cargo run --bin cargo-risczero -- risczero install
+        cargo install --path ./risc0/cargo-risczero --features experimental
 
     - name: Run tests
       run: cargo risczero test
